@@ -11,9 +11,14 @@ public class UserService {
     @Autowired
     private CurrentAuthentication currentAuthentication;
 
-    public void showCurrentUserProperty(CollectionLoader<?> collectionLoader) {
+    public void showCurrentUserProperty(CollectionLoader<User> collectionLoader) {
         User user = (User) currentAuthentication.getUser();
-        collectionLoader.setParameter("id", user.getId());
-        collectionLoader.load();
+        if (user.getUsername().equals("admin")) {
+            collectionLoader.setQuery("select us from User us");
+            collectionLoader.load();
+        } else {
+            collectionLoader.setParameter("id", user.getId());
+            collectionLoader.load();
+        }
     }
 }

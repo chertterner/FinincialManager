@@ -17,6 +17,9 @@ public class Category {
     @Id
     private UUID id;
 
+    @Column(name = "USER_ID")
+    private UUID userId;
+
     @InstanceName
     @Column(name = "NAME")
     private String name;
@@ -26,6 +29,14 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "TRANSACTION_ID", referencedColumnName = "ID"))
     @ManyToMany
     private List<Transaction> transactions;
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
 
     public List<Transaction> getTransactions() {
         return transactions;

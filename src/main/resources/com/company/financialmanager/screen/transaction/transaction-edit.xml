@@ -6,8 +6,9 @@
         <instance id="transactionDc"
                   class="com.company.financialmanager.entity.Transaction">
             <fetchPlan extends="_base">
-                <property name="fromAccount" fetchPlan="_base"/>
-                <property name="toAccount" fetchPlan="_base"/>
+                <property name="fromAccount" fetchPlan="_base">
+                    <property name="user" fetchPlan="_base"/>
+                </property>
                 <property name="categories" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
@@ -35,13 +36,7 @@
                 <dateField id="dateField" property="date"/>
                 <textField id="sumField" property="sum"/>
                 <textField id="forWhatField" property="forWhat"/>
-                <entityPicker id="fromAccountField" property="fromAccount" >
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
-                <entityPicker id="toAccountField" property="toAccount">
+                <entityPicker id="fromAccountField" property="fromAccount">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>
                         <action id="entityClear" type="entity_clear"/>

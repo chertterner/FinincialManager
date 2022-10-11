@@ -7,8 +7,9 @@
         <collection id="transactionsDc"
                     class="com.company.financialmanager.entity.Transaction">
             <fetchPlan extends="_base">
-                <property name="fromAccount" fetchPlan="_base"/>
-                <property name="toAccount" fetchPlan="_base"/>
+                <property name="fromAccount" fetchPlan="_base">
+                    <property name="user" fetchPlan="_base"/>
+                </property>
                 <property name="categories" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="transactionsDl">
@@ -52,13 +53,12 @@
                 <column id="sum"/>
                 <column id="forWhat"/>
                 <column id="fromAccount"/>
-                <column id="toAccount"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn" action="transactionsTable.create"/>
-                <button id="editBtn" action="transactionsTable.edit" visible="false"/>
+                <button id="editBtn" action="transactionsTable.edit"/>
                 <button id="removeBtn" action="transactionsTable.remove" visible="false"/>
             </buttonsPanel>
         </groupTable>
